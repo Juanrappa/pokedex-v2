@@ -9,6 +9,7 @@ const $container = document.querySelector("#containercards");
 const $button = document.querySelector("#boton");
 const $menu = document.querySelector("#menu");
 const $sentToAGithub = document.querySelector("#enviaragithub");
+let lastCard = "";
 let pokemons = ``;
 let next = "";
 
@@ -21,6 +22,13 @@ function sendToGithub() {
 $button.addEventListener(`click`, appearAndDisappearMenu);
 $sentToAGithub.addEventListener(`click`, sendToGithub);
 
+let observer = new IntersectionObserver(function (inputs) {
+  inputs.forEach(function (input) {
+    if (input.isIntersecting) {
+      displaypokemons(next);
+    }
+  });
+}, {});
 const createPokemonsHTML = function (response) {
   pokemons += `
     <div id="card" class="max-w-xs rounded overflow-hidden shadow-lg">
@@ -47,6 +55,8 @@ const getpokemons = async function (result) {
   let jsondata = await data.json();
   createPokemonsHTML(jsondata);
   $container.innerHTML = pokemons;
+  let $cards = document.querySelectorAll("#card");
+  lastCard = $cards[$cards.length - 1];
 };
 const displaypokemons = async function (URL) {
   let data = await fetch(URL);
@@ -54,17 +64,10 @@ const displaypokemons = async function (URL) {
   let result = await jsonData.results;
   next = jsonData.next;
   await result.forEach(getpokemons);
+
   setTimeout(function () {
-    let $cards = document.querySelectorAll("#card");
-    let lastCard = $cards[$cards.length - 1];
     observer.observe(lastCard);
   }, 1000);
 };
-let observer = new IntersectionObserver(function (inputs) {
-  inputs.forEach(function (input) {
-    if (input.isIntersecting) {
-      displaypokemons(next);
-    }
-  });
-}, {});
+
 displaypokemons(URL);
