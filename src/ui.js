@@ -3,18 +3,21 @@ import {
   getImg,
   getName,
   getTypes,
-} from "./auxiliary-functions.js";
-import {
-  $button,
-  $sentToAGithub,
-  sendToGithub,
-  appearAndDisappearMenu,
-} from "./main.js";
-
+} from "./getElementsOfPokemons.js";
 const URL = "https://pokeapi.co/api/v2/pokemon/";
 const $container = document.querySelector("#containercards");
+const $button = document.querySelector("#boton");
+const $menu = document.querySelector("#menu");
+const $sentToAGithub = document.querySelector("#enviaragithub");
 let pokemons = ``;
 let next = "";
+
+function appearAndDisappearMenu() {
+  $menu.classList.toggle("hidden");
+}
+function sendToGithub() {
+  window.location.href = "https://github.com/Juanrappa/pokedex";
+}
 $button.addEventListener(`click`, appearAndDisappearMenu);
 $sentToAGithub.addEventListener(`click`, sendToGithub);
 
