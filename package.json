@@ -1,0 +1,23 @@
+{
+  "name": "pokedex-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build":"npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Juanrappa/pokedex-v2.git"
+  },
+  "author": "juan manuel rappa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Juanrappa/pokedex-v2/issues"
+  },
+  "homepage": "https://github.com/Juanrappa/pokedex-v2#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}
