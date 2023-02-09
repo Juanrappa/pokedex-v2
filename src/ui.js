@@ -17,7 +17,7 @@ function appearAndDisappearMenu() {
   $menu.classList.toggle("hidden");
 }
 function sendToGithub() {
-  window.location.href = "https://github.com/Juanrappa/pokedex";
+  window.location.href = "https://github.com/Juanrappa/pokedex-v2";
 }
 $button.addEventListener(`click`, appearAndDisappearMenu);
 $sentToAGithub.addEventListener(`click`, sendToGithub);
