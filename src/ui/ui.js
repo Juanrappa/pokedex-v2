@@ -3,29 +3,18 @@ import {
   getImg,
   getName,
   getTypes,
-} from "./getElementsOfPokemons.js";
-const URL = "https://pokeapi.co/api/v2/pokemon/";
+} from "../getElementsOfPokemons.js";
+let page = 0;
+let URL = `https://pokeapi.co/api/v2/pokemon/?offset=${page}&limit=20`;
 const $container = document.querySelector("#containercards");
-const $button = document.querySelector("#boton");
-const $menu = document.querySelector("#menu");
-const $sentToAGithub = document.querySelector("#enviaragithub");
 let lastCard = "";
 let pokemons = ``;
-let next = "";
-
-function appearAndDisappearMenu() {
-  $menu.classList.toggle("hidden");
-}
-function sendToGithub() {
-  window.location.href = "https://github.com/Juanrappa/pokedex-v2";
-}
-$button.addEventListener(`click`, appearAndDisappearMenu);
-$sentToAGithub.addEventListener(`click`, sendToGithub);
 
 let observer = new IntersectionObserver(function (inputs) {
   inputs.forEach(function (input) {
     if (input.isIntersecting) {
-      displaypokemons(next);
+      page += 20;
+      displaypokemons(URL);
     }
   });
 }, {});
@@ -58,11 +47,11 @@ const getpokemons = async function (result) {
   let $cards = document.querySelectorAll("#card");
   lastCard = $cards[$cards.length - 1];
 };
-const displaypokemons = async function (URL) {
+export const displaypokemons = async function (URL) {
   let data = await fetch(URL);
   let jsonData = await data.json();
   let result = await jsonData.results;
-  next = jsonData.next;
+
   await result.forEach(getpokemons);
 
   setTimeout(function () {
