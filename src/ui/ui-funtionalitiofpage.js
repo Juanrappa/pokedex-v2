@@ -1,12 +1,10 @@
-const $button = document.querySelector("#boton");
-const $menu = document.querySelector("#menu");
-const $sentToAGithub = document.querySelector("#enviaragithub");
+export const $button = document.querySelector("#boton");
+export const $menu = document.querySelector("#menu");
+export const $sentToAGithub = document.querySelector("#enviaragithub");
 
-function appearAndDisappearMenu() {
+export function appearAndDisappearMenu() {
   $menu.classList.toggle("hidden");
 }
-function sendToGithub() {
+export function redirectToGithub() {
   window.location.href = "https://github.com/Juanrappa/pokedex-v2";
 }
-$button.addEventListener(`click`, appearAndDisappearMenu);
-$sentToAGithub.addEventListener(`click`, sendToGithub);
