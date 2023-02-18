@@ -5,23 +5,28 @@ import {
   $button,
   $sentToAGithub,
 } from "./ui/ui-funtionalitiofpage.js";
-$button.addEventListener(`click`, appearAndDisappearMenu);
-$sentToAGithub.addEventListener(`click`, redirectToGithub);
+
+$button.addEventListener("click", appearAndDisappearMenu);
+$sentToAGithub.addEventListener("click", redirectToGithub);
 let page = 0;
-let observer = new IntersectionObserver(function (inputs) {
-  inputs.forEach(function (input) {
+
+const displaypokemons = async (URL) => {
+  const data = await fetch(URL);
+  const jsonData = await data.json();
+  const result = await jsonData.results;
+  await result.forEach(getpokemon);
+  excuteObserver();
+};
+const observer = new IntersectionObserver((inputs) => {
+  inputs.forEach((input) => {
     if (input.isIntersecting) {
       page += 1;
       displaypokemons(returnPage(page));
     }
   });
 }, {});
-const displaypokemons = async function (URL) {
-  const data = await fetch(URL);
-  const jsonData = await data.json();
-  const result = await jsonData.results;
-  await result.forEach(getpokemon);
-  setTimeout(function () {
+const excuteObserver = () => {
+  setTimeout(() => {
     observer.observe(lastcard());
   }, 1000);
 };

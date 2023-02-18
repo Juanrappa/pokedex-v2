@@ -1,27 +1,26 @@
-const getName = function (response) {
-  let name = response.name;
+const getName = (response) => {
+  const name = [response.name];
   return name;
 };
-const getAbilities = function (response) {
-  let abilities = [];
-  response.abilities.forEach(function (ability) {
+const getAbilities = (response) => {
+  const abilities = [];
+  response.abilities.forEach((ability) => {
     abilities.push(ability.ability.name);
   });
   return abilities;
 };
-const getImg = function (response) {
-  let img = response.sprites.front_default;
+const getImg = (response) => {
+  const img = response.sprites.front_default;
   return img;
 };
-const getTypes = function (response) {
-  let types = [];
-  response.types.forEach(function (type) {
+const getTypes = (response) => {
+  const types = [];
+  response.types.forEach((type) => {
     types.push(type.type.name);
   });
   return types;
 };
-export const createPokemonsCard = function (response) {
-  return `
+export const createPokemonsCard = (response) => `
     <div id="card" class="max-w-xs rounded overflow-hidden shadow-lg">
     <img class="w-full" src="${getImg(response)}" alt="Sunset in the mountains">
     <div class="px-6 py-4">
@@ -39,4 +38,3 @@ export const createPokemonsCard = function (response) {
     </div>
   </div>
     `;
-};
