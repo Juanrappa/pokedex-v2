@@ -1,27 +1,15 @@
-const getName = (response) => {
-  const name = [response.name];
-  return name;
-};
-const getAbilities = (response) => {
-  const abilities = [];
-  response.abilities.forEach((ability) => {
-    abilities.push(ability.ability.name);
-  });
-  return abilities;
-};
-const getImg = (response) => {
-  const img = response.sprites.front_default;
-  return img;
-};
-const getTypes = (response) => {
-  const types = [];
-  response.types.forEach((type) => {
-    types.push(type.type.name);
-  });
-  return types;
-};
+/* eslint-disable no-undef */
+import {
+  getAbilities,
+  getImg,
+  getName,
+  getTypes,
+} from "./getElementsOfPokemons.js";
+
 export const createPokemonsCard = (response) => `
-    <div id="card" class="max-w-xs rounded overflow-hidden shadow-lg">
+    <div id="card" data-cy="card" data-name="${getName(
+      response
+    )}" class="max-w-xs rounded overflow-hidden shadow-lg">
     <img class="w-full" src="${getImg(response)}" alt="Sunset in the mountains">
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">${getName(response)}</div>
