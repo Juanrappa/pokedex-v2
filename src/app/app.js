@@ -1,4 +1,4 @@
-import { getpokemon, returnPage, lastcard, showPokemons, a } from "../ui/ui.js";
+import { getpokemon, returnPage, lastcard } from "../ui/ui.js";
 import {
   redirectToGithub,
   appearAndDisappear,
@@ -7,9 +7,7 @@ import {
   $menu,
   GITHUB_URL_POKEDEX_V2,
 } from "../ui/ui-funtionalitiofpage.js";
-import { createPokemonsCard } from "../createPokemon/createPokemons.js";
 
-const pokemons = [];
 $button.addEventListener("click", () => {
   appearAndDisappear($menu);
 });
@@ -22,7 +20,7 @@ const displaypokemons = async (URL) => {
   const data = await fetch(URL);
   const jsonData = await data.json();
   const result = await jsonData.results;
-  result.forEach(showPokemons(createPokemonsCard(a)));
+  await result.forEach(getpokemon);
   excuteObserver();
 };
 const observer = new IntersectionObserver((inputs) => {
