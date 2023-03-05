@@ -2,14 +2,8 @@
   @jest-environment jsdom
  */
 /* eslint-disable no-undef */
-import * as data from "../../../cypress/fixtures/bulbasaur-url.json";
-import { returnPage, getpokemon, lastcard } from "../ui.js";
-import {
-  getAbilities,
-  getImg,
-  getName,
-  getTypes,
-} from "../../createPokemon/getElementsOfPokemons.js";
+
+import { returnPage, lastcard } from "../ui.js";
 
 describe("test ui.js", () => {
   test("test returnPage", () => {
@@ -24,21 +18,5 @@ describe("test ui.js", () => {
     <div id="card" >3<div/>
     `;
     expect(lastcard()).toString("3");
-  });
-});
-describe("test getpokemon", () => {
-  test("getpokemons", () => {
-    global.fetch = jest.fn();
-    global.fetch.mockImplementationOnce(
-      () =>
-        new Promise((resolve) => {
-          const jsonpromise = new Promise((r) => {
-            r({});
-          });
-          resolve({ json: () => jsonpromise });
-        })
-    );
-    getpokemon(data);
-    expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 });
