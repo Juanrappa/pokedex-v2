@@ -12,7 +12,7 @@ import {
   returnDataOfEachPokemon,
   sortDataOfPokemon,
   createCards,
-} from "../fechAndManageData/displayPokemons.js";
+} from "../fechAndManageData/createPokemons.js";
 import { returnFetchPokeApi } from "../fechAndManageData/fetch.js";
 import { getpokemon } from "../fechAndManageData/fetch.js";
 import { Pokemon } from "../createPokemon/pokemon.js";
