@@ -1,4 +1,4 @@
 # pokedex-v2
  
-run npm install 
+run npm install and next
 run npm run build
