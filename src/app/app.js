@@ -41,6 +41,7 @@ const excuteObserver = () => {
 const app = async (URL) => {
   const result = await returnFetchPokeApi(URL);
   const dataPokemons = await returnDataOfEachPokemon(result, getpokemon);
+  console.log(dataPokemons)
   const sortData = sortDataOfPokemon(dataPokemons, Pokemon);
   const cards = createCards(sortData, createCard);
   showPokemon(cards);
